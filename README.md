@@ -36,16 +36,16 @@ Discovery protocol request packet (binary):
 00 AA BB CC DD EE FF
 <ol>
   <li>00: protocol identifier (0x00)
-  <li>AA BB CC DD: workstation unicast channel IP address AA.BB.CC.DD
-  <li>EE FF: workstation unicast channel UDP port 0xEEFF
+  <li>AA BB CC DD (placeholders): workstation unicast channel IP address AA.BB.CC.DD
+  <li>EE FF (placeholders): workstation unicast channel UDP port 0xEEFF
 </ol>  
 
 Discovery answer packet (unicast):
 00 AA BB CC DD EE
 <ol>
   <li>00: protocol identifier (0x00)
-  <li>AA BB CC DD: device unicast channel IP address AA.BB.CC.DD / Device "serial number" 0xAABBCCDD
-  <li>EE: number of analog channels in the device 0xEE
+  <li>AA BB CC DD (placeholders): device unicast channel IP address AA.BB.CC.DD / Device "serial number" 0xAABBCCDD
+  <li>EE (placeholder): number of analog channels in the device 0xEE
 </ol>  
 
 # Start/stop commands
@@ -76,13 +76,13 @@ A unicast message sent by each device in the network with audio recorded data.
 Each audio sample is 16 bits, and the length of the recorded data should be adjusted to optimize traffic.
 
 Sampled audio packet (binary):
-FF AA BB CC DD EE
+FF AA BB CC DD EE TT PP  GG HH II JJ ... YY ZZ
 <ol>
-  <li>FF: protocol identifier 0xFF
-  <li>AA BB CC DD: device unicast channel IP address AA.BB.CC.DD / Device "serial number" 0xAABBCCDD
-  <li>EE: recorded analog channel 0xEE
-  <li>TT: timestamp (several bytes)
-  <li>PP: Packet number 0xPP
-  <li>FF GG: recorded data length (0xFFGG bytes)
-  <li>HH II ... YY ZZ: recorded data (two bytes per sample: 0xHHII, ..., 0xYYZZ)
+  <li>FF: protocol identifier (0xFF)
+  <li>AA BB CC DD (placeholders): device unicast channel IP address AA.BB.CC.DD / Device "serial number" 0xAABBCCDD
+  <li>EE (placeholder): recorded analog channel 0xEE
+  <li>TT (placeholder): timestamp (several bytes)
+  <li>PP (placeholder): Packet number 0xPP
+  <li>GG HH (placeholders): recorded data length (0xGGHH bytes)
+  <li>II JJ ... YY ZZ (placeholders): recorded data (two bytes per sample: 0xIIJJ, ..., 0xYYZZ)
 </ol>  
