@@ -4,18 +4,20 @@ Sw to collect audio samples of multiple sensor devices to a central workstation
 ## Project setup
 A workstation connects with several sensor devices (stm32f4 discovery + ethernet expansion boards) through a multicast channel and unicast channel
 
-The multicast channel workstation->devices (all) serves these purposes:
+The multicast channel is workstation->devices (all) and serves the following purposes:
 * Discovery protocol (request)
 * Start/stop commands
 * Timestamp update
+
 and the required common setup is to be stored into the app_conf.h header file:
 1. IP group address (MULTICAST_ADDR)
 2. Group port number (MULTICAST_PORT)
 
-The unicast channel device (one)->workstation serves these purposes:
+The unicast channel is device (one)->workstation and serves these purposes:
 * Discovery protocol (answer)
 * Sampled audio data
-the common setup is sent by the workstation in the discovery request.
+
+the common setup for this unicast cahnnel is sent by the workstation in the discovery request.
 
 ## Discovery protocol
 The aim is to assist the workstation program to adapt to the actual number of devices in the network; it is also used to spread the setup of the unicast channel.
@@ -27,7 +29,7 @@ The discovery protocol is built from two messages:
 ### Discovery protocol request packet (binary):
 Protocol identifier | worskation unicast channel's IP address | worskation unicast channel's UDP port
 --------------------|-----------------------------------------|--------------------------------------
-         00         | AA BB CC DD                             | EE FF
+00 | AA BB CC DD | EE FF
 
 Packet fields:
 1. 00: protocol identifier (0x00)
@@ -37,7 +39,7 @@ Packet fields:
 ### Discovery answer packet (unicast):
 Protocol identifier | device unicast channel's IP address / serial number | analog channels
 --------------------|-----------------------------------------------------|----------------
-          00        | AA BB CC DD                                         | EE
+00 | AA BB CC DD | EE
 
 Packet fields:
 1. 00: protocol identifier (0x00)
@@ -53,7 +55,7 @@ If the stop command is sent the devices will stop sending recorded data through 
 ### Start command packet (binary):
 Protocol identifier 
 --------------------|
-          01        
+01        
 
 Packet fields:
 1. 01: protocol identifier (0x01)
@@ -62,7 +64,7 @@ With the start command the devices initializes their local time to zero.
 ### Stop command packet (binary):
 Protocol identifier 
 --------------------|
-          02        
+02        
 
 Packet fields:
 1. 02: protocol identifier (0x02)
