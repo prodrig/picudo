@@ -1,7 +1,7 @@
 # picudo
 Sw to collect audio samples of multiple sensor devices to a central workstation
 
-# project setup
+## Project setup
 A workstation connects with several sensor devices (stm32f4 discovery + ethernet expansion boards) through a multicast channel and unicast channel
 
 The multicast channel workstation->devices (all) serves these purposes:
@@ -23,7 +23,7 @@ The unicast channel device (one)->workstation serves these purposes:
 </ul>
 the common setup is sent by the workstation in the discovery request.
 
-# Discovery protocol
+## Discovery protocol
 The aim is to assist the workstation program to adapt to the actual number of devices in the network; it is also used to spread the setup of the unicast channel.
 
 The discovery protocol is built from two messages:
@@ -48,7 +48,7 @@ Discovery answer packet (unicast):
   <li>EE (placeholder): number of analog channels in the device 0xEE
 </ol>  
 
-# Start/stop commands
+## Start/stop commands
 Commands sent from the workstation to all devices in the network to start and stop recording audio samples. There is no specific answer from the devices
 
 If the start command is sent the devices will start sending recorded data regularly through the unicast channel.
@@ -67,11 +67,11 @@ Stop command packet (binary):
   <li>02: protocol identifier (0x02)
 </ol>  
 
-# Timestamp update
+## Timestamp update
 A multicast message sent by the workstation to synchronize the local time of all devices in the network and avoid local clock drift.
-This could be replaced by any clock synchronization protocol available.
+This could be *replaced* by any clock synchronization protocol available.
 
-# Sampled audio data
+## Sampled audio data
 A unicast message sent by each device in the network with audio recorded data.
 Each audio sample is 16 bits, and the length of the recorded data should be adjusted to optimize traffic.
 
