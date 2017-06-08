@@ -55,7 +55,7 @@ If the stop command is sent the devices will stop sending recorded data through 
 ### Start command packet (binary):
 Protocol identifier 
 --------------------|
-01        
+01
 
 Packet fields:
 1. 01: protocol identifier (0x01)
@@ -64,7 +64,7 @@ With the start command the devices initializes their local time to zero.
 ### Stop command packet (binary):
 Protocol identifier 
 --------------------|
-02        
+02
 
 Packet fields:
 1. 02: protocol identifier (0x02)
